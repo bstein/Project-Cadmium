@@ -19,8 +19,10 @@ $(document).ready(function()
         'font-family':'\'Open Sans\', sans-serif'
       });
 
-      var posx = ((Math.random() * (width + widthTolerance)) - widthTolerance).toFixed();
-      var posy = ((Math.random() * (height + heightTolerance)) - heightTolerance).toFixed();
+      // offset random in order to reduce left side splatter bias
+      // also deal with width/height tolerances to avoid edge splatter bias
+      var posx = (((Math.random() - .03) * (width + widthTolerance)) - widthTolerance).toFixed();
+      var posy = (((Math.random() - .03) * (height + heightTolerance)) - heightTolerance).toFixed();
 
       $newb.css({
           'position':'absolute',
