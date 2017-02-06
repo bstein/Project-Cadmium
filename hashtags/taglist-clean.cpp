@@ -37,12 +37,12 @@ int main(int argc, char *argv[])
 
       if (i == 1)
       {
-        ofsAS << line;
+        ofsAS << "\"" << line << "\"";
         ofsLS << line;
       }
       else
       {
-        ofsAS << ", " << line;
+        ofsAS << ", \"" << line << "\"";
         ofsLS << "\n" << line;
       }
 
