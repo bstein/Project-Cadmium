@@ -6,14 +6,15 @@ $(document).ready(function()
   var widthTolerance = width * 0.1;
   var heightTolerance = height * 0.1;
 
+  colorIndex = Math.floor(Math.random() * 18);
   var tags = getTags();
 
   for (i = 0; i < tags.length; i++)
   {
-      $newb = $('<a href=\"https://www.instagram.com/explore/tags/' + tags[i]
+      $newb = $('<a class=\"tagText\" href=\"https://www.instagram.com/explore/tags/' + tags[i]
                 + '\" target=\"_blank\" onClick=\"shuffleElements()\">'
                 + tags[i] + '</a>').css({
-        'color':'#FF5722',
+        'color':colors[colorIndex],
         'text-decoration':'none',
         'font-size':'500%',
         'font-family':'\'Open Sans\', sans-serif'
@@ -32,7 +33,16 @@ $(document).ready(function()
   }
 
   document.body.style.backgroundColor = "white";
+  colorLoop();
 });
+
+function colorLoop()
+{
+  colorIndex++;
+  colorIndex = colorIndex % 19;
+  $("a.tagText").animate({color: colors[colorIndex]},2000);
+  setTimeout(colorLoop, 10);
+}
 
 function shuffleElements()
 {
@@ -62,6 +72,34 @@ function shuffleArray(array)
 
   return array;
 }
+
+/* colors
+red         #F44336
+pink        #E91E63
+purple      #9C27B0
+deep purple #673AB7
+indigo      #3F51B5
+blue        #2196F3
+light blue  #03A9F4
+cyan        #00BCD4
+teal        #009688
+green       #4CAF50
+light green #8BC34A
+lime        #CDDC39
+yellow      #FFEB3B
+amber       #FFC107
+orange      #FF9800
+deep orange #FF5722
+brown       #795548
+grey        #9E9E9E
+blue grey   #607D8B
+*/
+
+var colorIndex = -1;
+var colors = ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5",
+                "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50",
+                "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800",
+                "#FF5722", "#795548", "#9E9E9E", "#607D8B"];
 
 function getTags()
 {
